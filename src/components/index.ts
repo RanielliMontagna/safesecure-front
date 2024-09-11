@@ -8,3 +8,4 @@ export * from './ui/form'
 // Layouts
 export { Sidebar } from './sidebar/sidebar'
 export { Appbar } from './appbar/appbar'
+export { Header } from './header/header'

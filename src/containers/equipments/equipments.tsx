@@ -1,3 +1,12 @@
+import { Header } from '@/components'
+
 export function Equipments() {
-  return <div>Equipments</div>
+  return (
+    <div>
+      <Header
+        title="Equipamentos"
+        description="Aqui você pode gerenciar os equipamentos um a um, para manter o controle de tudo."
+      />
+    </div>
+  )
 }

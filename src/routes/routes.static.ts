@@ -4,6 +4,7 @@ import {
   ArchiveIcon,
   LockOpen1Icon,
   BookmarkIcon,
+  ActivityLogIcon,
 } from '@radix-ui/react-icons'
 
 import {
@@ -14,6 +15,7 @@ import {
   Employees,
   Categories,
 } from '@/containers'
+import { Logs } from '@/containers/logs/logs'
 
 export const publicRoutes = [{ name: 'Login', href: '/', Component: Login }]
 
@@ -47,5 +49,11 @@ export const privateRoutes = [
     href: '/categorias',
     Component: Categories,
     Icon: BookmarkIcon,
+  },
+  {
+    name: 'Registros',
+    href: '/registros',
+    Component: Logs,
+    Icon: ActivityLogIcon,
   },
 ]

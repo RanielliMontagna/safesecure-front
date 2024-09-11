@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 
 import { Appbar, Sidebar } from '@/components'
-import { useIsMobile } from '@/hooks/useIsMobile/useIsMobile'
+import { useIsMobile } from '@/hooks'
 
 export function PrivateLayout() {
   const { isMobile } = useIsMobile()
