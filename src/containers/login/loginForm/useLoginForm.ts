@@ -1,41 +1,40 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-interface LoginFormValues {
-  email: string
-  password: string
-}
+import { z } from '@/lib/zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const formSchema = z.object({
+  email: z.string().email(),
+  password: z.string(),
+})
 
 export function useLoginForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<LoginFormValues>()
+  const [isLoading, setIsLoading] = useState(false)
 
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: { email: '', password: '' },
+  })
 
-  const onSubmit = async (data: LoginFormValues) => {
+  function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       setIsLoading(true)
 
-      console.log(data)
-      //TODO: implement login logic
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      //TODO: Implement login
+      console.log(values)
     } catch (error) {
-      //TODO: handle error
+      //TODO: Implement error handling
       console.error(error)
     } finally {
       setIsLoading(false)
-      reset()
     }
   }
 
   return {
-    errors,
+    form,
     isLoading,
-    register,
-    onSubmit: handleSubmit(onSubmit),
+    errors: form.formState.errors,
+    onSubmit: form.handleSubmit(onSubmit),
   }
 }
