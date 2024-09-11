@@ -1,0 +1,31 @@
+import { useCallback, useState } from 'react'
+
+import { APPLICATION_NAME } from '@/constants'
+import { Label } from '../ui/label'
+
+import { AvatarIcon, HamburgerMenuIcon } from '@radix-ui/react-icons'
+import { Sidebar } from '../sidebar/sidebar'
+
+export function Appbar() {
+  const [openSidebar, setOpenSidebar] = useState(false)
+
+  const handleCloseSidebar = useCallback(() => {
+    setOpenSidebar(false)
+  }, [])
+
+  return (
+    <div className="bg-gray-200 h-12 flex items-center justify-between px-4">
+      <HamburgerMenuIcon
+        className="w-5 h-5"
+        onClick={() => setOpenSidebar(!openSidebar)}
+      />
+      <Label className="text-lg font-semibold tracking-tight">
+        {APPLICATION_NAME}
+      </Label>
+      <AvatarIcon className="w-5 h-5" />
+      <Sidebar
+        expansive={{ isOpen: openSidebar, onClose: handleCloseSidebar }}
+      />
+    </div>
+  )
+}
