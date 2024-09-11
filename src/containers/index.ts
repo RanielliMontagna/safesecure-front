@@ -1,0 +1,5 @@
+export { Dashboard } from './dashboard/dashboard'
+export { Categories } from './categories/categories'
+export { Employees } from './employees/employees'
+export { Equipments } from './equipments/equipments'
+export { Login } from './login/login'
