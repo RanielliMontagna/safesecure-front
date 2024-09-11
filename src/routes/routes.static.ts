@@ -14,8 +14,8 @@ import {
   Equipments,
   Employees,
   Categories,
+  Logs,
 } from '@/containers'
-import { Logs } from '@/containers/logs/logs'
 
 export const publicRoutes = [{ name: 'Login', href: '/', Component: Login }]
 
