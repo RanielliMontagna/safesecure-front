@@ -10,14 +10,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.45",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-error-boundary": "^4.0.13",
     "react-router-dom": "^6.26.2",
-    "vite-tsconfig-paths": "^5.0.1"
+    "tailwindcss": "^3.4.10",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@types/node": "^22.5.4",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",

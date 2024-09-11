@@ -1,6 +1,6 @@
 import { Navigate, useRoutes } from 'react-router-dom'
 
-import { Categories, Dashboard, Employees, Equipments } from 'containers'
+import { Categories, Dashboard, Employees, Equipments } from '@/containers'
 
 export function Routes() {
   return useRoutes([
