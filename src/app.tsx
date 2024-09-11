@@ -1,7 +1,7 @@
 import { Routes } from '@/routes/routes'
 import Providers from '@/providers/providers'
 
-import '@/index.css'
+import '@/styles/global.css'
 
 export default function App() {
   return (

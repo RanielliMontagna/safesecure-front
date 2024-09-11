@@ -1,3 +1,4 @@
+export { Allocation } from './allocation/allocation'
 export { Dashboard } from './dashboard/dashboard'
 export { Categories } from './categories/categories'
 export { Employees } from './employees/employees'
