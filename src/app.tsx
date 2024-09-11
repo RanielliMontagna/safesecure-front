@@ -8,9 +8,7 @@ import '@/index.css'
 export default function App({ Router = BrowserRouter }) {
   return (
     <Providers>
-      <Router>
-        <Routes />
-      </Router>
+      <Routes />
     </Providers>
   )
 }
