@@ -1,10 +1,20 @@
 import { useLocation, useNavigate } from 'react-router-dom'
+import { ExitIcon } from '@radix-ui/react-icons'
 
 import { Button } from '../ui/button'
 
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils'
 import { privateRoutes } from '@/routes/routes.static'
 import { APPLICATION_NAME } from '@/constants'
+import { useAuthStore } from '@/store/auth/auth'
+import { Avatar, AvatarFallback } from '../ui/avatar'
+import { getInitials } from '@/utils'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '../ui/tooltip'
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   expansive?: {
@@ -14,6 +24,8 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 function Sidebar({ className, expansive }: SidebarProps) {
+  const { user, clearStore } = useAuthStore()
+
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -26,12 +38,12 @@ function Sidebar({ className, expansive }: SidebarProps) {
 
   return (
     <div className={sidebarClasses}>
-      <div className="space-y-4 py-4">
-        <div className="px-3 py-2">
+      <div className="space-y-4 py-4 h-screen">
+        <div className="px-3 py-2 h-full flex flex-col">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
             {APPLICATION_NAME}
           </h2>
-          <div className="space-y-1">
+          <div className="space-y-1 flex-1">
             {privateRoutes.map(route => (
               <Button
                 key={route.href}
@@ -48,6 +60,37 @@ function Sidebar({ className, expansive }: SidebarProps) {
                 {route.name}
               </Button>
             ))}
+          </div>
+          <div className="mt-4 pt-4 border-t border-gray-300">
+            <div className="flex items-center p-2 gap-2">
+              <Avatar>
+                <AvatarFallback>{getInitials(user?.name)}</AvatarFallback>
+              </Avatar>
+              <div className="flex flex-col justify-center flex-1">
+                <h3 className="text-sm font-semibold tracking-tight m-0">
+                  {user?.name}
+                </h3>
+                <div className="flex items-center gap-1">
+                  <span className="w-2 h-2 bg-green-500 rounded-full" />
+                  <span className="text-xs text-gray-500">Online</span>
+                </div>
+              </div>
+              <TooltipProvider>
+                <Tooltip delayDuration={400}>
+                  <TooltipTrigger>
+                    <Button
+                      variant="ghost"
+                      onClick={clearStore}
+                      className="w-8 h-8 p-1 rounded-full flex items-center justify-center hover:bg-gray-300">
+                      <ExitIcon className="w-4 h-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <span>Sair</span>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
           </div>
         </div>
       </div>

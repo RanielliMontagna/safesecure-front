@@ -2,6 +2,8 @@ import type { LoginPayload } from '@/api/auth/auth.types'
 
 export interface UserTokenDecoded {
   sub: string
+  email: string
+  name: string
 }
 
 export interface AuthState {
@@ -10,7 +12,7 @@ export interface AuthState {
 }
 
 export interface AuthStore extends AuthState {
-  login: (payload: LoginPayload) => void
+  login: (payload: LoginPayload) => Promise<void>
   setToken: (token: string) => void
   setUser: (user: UserTokenDecoded) => void
   clearStore: () => void

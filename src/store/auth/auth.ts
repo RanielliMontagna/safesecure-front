@@ -11,13 +11,27 @@ import type { AuthState, AuthStore, UserTokenDecoded } from './types'
 
 const tokenCookieName = 'token'
 
-const initialState: AuthState = {
-  token: getCookie(tokenCookieName) || null,
-  user: null,
+const initialState = (): AuthState => {
+  const token = getCookie(tokenCookieName)
+
+  if (token) {
+    const decodedToken = jwtDecode(token) as UserTokenDecoded
+
+    return {
+      token,
+      user: {
+        sub: decodedToken.sub,
+        email: decodedToken.email,
+        name: decodedToken.name,
+      },
+    }
+  }
+
+  return { token: null, user: null }
 }
 
 export const useAuthStore = create<AuthStore>((set, get) => ({
-  ...initialState,
+  ...initialState(),
 
   login: async ({ email, password }) => {
     useAppStore.getState().setLoading(true)
@@ -51,6 +65,8 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
 
     get().setUser({
       sub: decodedToken.sub,
+      email: decodedToken.email,
+      name: decodedToken.name,
     })
 
     set({ token })

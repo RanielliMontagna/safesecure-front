@@ -1,7 +1,7 @@
 import React from 'react'
 import { ReloadIcon } from '@radix-ui/react-icons'
 
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils'
 import {
   Input,
   Button,

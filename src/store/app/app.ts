@@ -2,6 +2,7 @@ import { create } from 'zustand'
 
 import type { AppState, AppStore } from './types'
 import { AxiosError } from 'axios'
+import { toast } from '@/hooks/use-toast'
 
 const initialState: AppState = {
   loading: false,
@@ -23,35 +24,32 @@ export const useAppStore = create<AppStore>(set => ({
       const issues = axiosError?.response?.data?.issues
 
       if (issues) {
-        // const firstIssue = Object.values(issues)[1]
-        //TODO: Implement toast
-        // notifications.show({
-        //   title: axiosError?.response?.data?.message || 'Ocorreu um erro',
-        //   message: firstIssue?._errors?.[0],
-        //   color: 'red',
-        // })
+        const firstIssue = Object.values(issues)[1]
+
+        toast({
+          title: axiosError?.response?.data?.message || 'Ocorreu um erro',
+          description: firstIssue?._errors?.[0],
+          variant: 'destructive',
+        })
       } else {
-        // const message = err.response?.data?.message
-        //TODO: Implement toast
-        // notifications.show({
-        //   message: message || 'Ocorreu um erro',
-        //   color: 'red',
-        // })
+        const message = err.response?.data?.message
+
+        toast({
+          title: message || 'Ocorreu um erro',
+          variant: 'destructive',
+        })
       }
     } else if (typeof err === 'object' && err?.message) {
-      //TODO: Implement toast
-      // notifications.show({
-      //   title: err.title || 'Ocorreu um erro',
-      //   message: err.message,
-      //   color: 'red',
-      // })
+      toast({
+        title: err.title || 'Ocorreu um erro',
+        description: err.message,
+        variant: 'destructive',
+      })
     } else {
-      // TODO: Implement toast
-      // notifications.show({
-      //   title: 'Ocorreu um erro',
-      //   message: 'Algo deu errado, tente novamente mais tarde',
-      //   color: 'red',
-      // })
+      toast({
+        title: 'Ocorreu um erro',
+        variant: 'destructive',
+      })
     }
   },
 }))

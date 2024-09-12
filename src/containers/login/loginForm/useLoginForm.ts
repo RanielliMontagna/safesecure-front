@@ -12,7 +12,7 @@ const formSchema = z.object({
 })
 
 export function useLoginForm() {
-  const [isLoading] = useState(false)
+  const [isLoading, setLoading] = useState(false)
   const { login } = useAuthStore()
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -20,8 +20,13 @@ export function useLoginForm() {
     defaultValues: { email: getLocal('email') || '', password: '' },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    login(values)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      setLoading(true)
+      await login(values)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return {

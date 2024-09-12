@@ -1,10 +1,12 @@
 import { Outlet } from 'react-router-dom'
 
-import { Appbar, Sidebar } from '@/components'
+import { Appbar, Loading, Sidebar } from '@/components'
 import { useIsMobile } from '@/hooks'
+import { useAppStore } from '@/store/app/app'
 
 export function PrivateLayout() {
   const { isMobile } = useIsMobile()
+  const { loading } = useAppStore()
 
   if (isMobile) {
     return (
@@ -13,6 +15,7 @@ export function PrivateLayout() {
         <div className="w-full h-full p-4 overflow-auto">
           <Outlet />
         </div>
+        {loading && <Loading />}
       </div>
     )
   }
@@ -23,6 +26,7 @@ export function PrivateLayout() {
       <div className="w-full p-8 overflow-auto">
         <Outlet />
       </div>
+      {loading && <Loading />}
     </div>
   )
 }
