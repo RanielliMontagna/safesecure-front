@@ -1,4 +1,5 @@
 import React from 'react'
+import { ReloadIcon } from '@radix-ui/react-icons'
 
 import { cn } from '@/lib/utils'
 import {
@@ -31,7 +32,11 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="nome@exemplo.com" {...field} />
+                      <Input
+                        placeholder="nome@exemplo.com"
+                        disabled={isLoading}
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -47,6 +52,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
                       <Input
                         type="password"
                         placeholder="********"
+                        disabled={isLoading}
                         {...field}
                       />
                     </FormControl>
@@ -55,7 +61,12 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
                 )}
               />
             </div>
-            <Button disabled={isLoading}>Entrar</Button>
+            <Button disabled={isLoading}>
+              {isLoading && (
+                <ReloadIcon className="w-4 h-4 mr-2 animate-spin" />
+              )}
+              Entrar
+            </Button>
           </div>
         </form>
       </Form>

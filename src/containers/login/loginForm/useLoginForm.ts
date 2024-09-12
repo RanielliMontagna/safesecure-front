@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form'
 
 import { z } from '@/lib/zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { getLocal } from '@/helpers/localStorage'
+import { useAuthStore } from '@/store/auth/auth'
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -10,25 +12,16 @@ const formSchema = z.object({
 })
 
 export function useLoginForm() {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading] = useState(false)
+  const { login } = useAuthStore()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { email: '', password: '' },
+    defaultValues: { email: getLocal('email') || '', password: '' },
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      setIsLoading(true)
-
-      //TODO: Implement login
-      console.log(values)
-    } catch (error) {
-      //TODO: Implement error handling
-      console.error(error)
-    } finally {
-      setIsLoading(false)
-    }
+    login(values)
   }
 
   return {

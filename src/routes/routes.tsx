@@ -8,11 +8,12 @@ import {
 import { PublicLayout } from '@/layouts/publicLayout'
 import { PrivateLayout } from '@/layouts/privateLayout'
 import { privateRoutes, publicRoutes } from './routes.static'
+import { useAuthStore } from '@/store/auth/auth'
 
 export function Routes() {
-  const isAuthenticated = true
+  const { token } = useAuthStore()
 
-  if (!isAuthenticated) {
+  if (!token) {
     return (
       <BrowserRouter>
         <RoutesV6>
