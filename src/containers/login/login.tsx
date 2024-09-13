@@ -1,5 +1,7 @@
 import { LoginForm } from './loginForm/loginForm'
 
+import SafeSecureLogo from '@/assets/svgs/safe-secure-logo.svg'
+
 export function Login() {
   return (
     <>
@@ -22,6 +24,11 @@ export function Login() {
         <div>
           <div className="mx-auto flex w-full flex-col space-y-6 max-w-[350px] p-8">
             <div className="flex flex-col space-y-2 text-center">
+              <img
+                src={SafeSecureLogo}
+                alt="Safe Secure Logo"
+                className="w-20 mx-auto"
+              />
               <h1 className="text-2xl font-semibold tracking-tight">
                 Entre com sua conta
               </h1>
