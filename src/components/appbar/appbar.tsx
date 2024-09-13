@@ -18,7 +18,7 @@ export function Appbar() {
   }, [])
 
   return (
-    <div className="bg-gray-200 h-12 flex items-center justify-between px-4">
+    <div className="bg-gray-300 h-12 flex items-center justify-between px-4">
       <HamburgerMenuIcon
         className="w-5 h-5"
         onClick={() => setOpenSidebar(!openSidebar)}

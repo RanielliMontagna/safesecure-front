@@ -1,5 +1,8 @@
 import { PropsWithChildren } from 'react'
+import { QueryClientProvider } from 'react-query'
 import { ErrorBoundary } from 'react-error-boundary'
+
+import { queryClient } from '@/lib/react-query'
 
 export default function Providers({ children }: PropsWithChildren) {
   return (
@@ -10,7 +13,7 @@ export default function Providers({ children }: PropsWithChildren) {
           <h1>Something went wrong</h1>
         </div>
       }>
-      {children}
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </ErrorBoundary>
   )
 }

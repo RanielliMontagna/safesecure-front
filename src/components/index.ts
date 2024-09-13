@@ -8,6 +8,12 @@ export * from './ui/avatar'
 export * from './ui/tooltip'
 export * from './ui/toast'
 export * from './ui/toaster'
+export * from './ui/dialog'
+export * from './ui/alert-dialog'
+export * from './ui/skeleton'
+export * from './ui/table'
+export * from './ui/textarea'
+export * from './ui/dropdown-menu'
 
 // Layouts
 export { Sidebar } from './sidebar/sidebar'

@@ -10,7 +10,7 @@ export function PrivateLayout() {
 
   if (isMobile) {
     return (
-      <div className="h-screen flex flex-col">
+      <div className="h-screen flex flex-col bg-gray-100">
         <Appbar />
         <div className="w-full h-full p-4 overflow-auto">
           <Outlet />
@@ -21,7 +21,7 @@ export function PrivateLayout() {
   }
 
   return (
-    <div className="h-screen flex">
+    <div className="h-screen flex bg-gray-100">
       <Sidebar />
       <div className="w-full p-8 overflow-auto">
         <Outlet />
