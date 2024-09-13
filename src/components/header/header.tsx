@@ -32,8 +32,7 @@ export function Header({ title, description, button }: HeaderProps) {
         {description && <p>{description}</p>}
       </div>
       {button && (
-        <Button {...button} size="lg">
-          {button.icon && <button.icon className="w-4 h-4 mr-2" />}
+        <Button {...button} startIcon={button.icon} size="lg">
           {button.text}
         </Button>
       )}

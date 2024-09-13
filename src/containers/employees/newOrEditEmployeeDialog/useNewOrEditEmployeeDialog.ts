@@ -4,22 +4,21 @@ import { useForm } from 'react-hook-form'
 import { z } from '@/lib/zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { createCategory, updateCategory } from '@/api/categories/categories'
+import { createEmployee, updateEmployee } from '@/api/employees/employees'
 import { useAppStore } from '@/store/app/app'
 import { toast } from '@/hooks'
 import { queryClient } from '@/lib/react-query'
 
-import { formSchema, NewCategoryDialogProps } from '../categories.types'
+import { formSchema, NewEmployeeDialogProps } from '../employees.types'
 
-export function useNewOrEditCategoryDialog({
+export function useNewOrEditEmployeeDialog({
   data,
   onClose,
-}: NewCategoryDialogProps) {
+}: NewEmployeeDialogProps) {
   const { handleError } = useAppStore()
   const [isLoading, setLoading] = useState(false)
 
-  const defaultValues = { name: '', description: '' }
-
+  const defaultValues = { name: '', cpf: '', registration: '', sector: '' }
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues,
@@ -30,19 +29,24 @@ export function useNewOrEditCategoryDialog({
     form.reset()
   }
 
-  async function handleCreateCategory(values: z.infer<typeof formSchema>) {
+  async function handleCreateEmployee(values: z.infer<typeof formSchema>) {
     try {
       setLoading(true)
 
-      await createCategory(values)
+      await createEmployee({
+        name: values.name,
+        cpf: values.cpf,
+        sector: values.sector,
+        registration: Number(values.registration),
+      })
 
       toast({
-        title: 'Categoria criada com sucesso!',
-        description: `A categoria "${values.name}" foi criada com sucesso.`,
+        title: 'Funcionário criado com sucesso!',
+        description: `O funcionário "${values.name}" foi criado com sucesso.`,
         variant: 'success',
       })
 
-      queryClient.invalidateQueries('categories')
+      queryClient.invalidateQueries('employees')
       onClose()
     } catch (err) {
       handleError(err)
@@ -51,22 +55,24 @@ export function useNewOrEditCategoryDialog({
     }
   }
 
-  async function handleEditCategory(values: z.infer<typeof formSchema>) {
+  async function handleEditEmployee(values: z.infer<typeof formSchema>) {
     try {
       setLoading(true)
 
-      await updateCategory(values.id!, {
+      await updateEmployee(values.id!, {
         name: values.name,
-        description: values.description,
+        cpf: values.cpf,
+        sector: values.sector,
+        registration: Number(values.registration),
       })
 
       toast({
-        title: 'Categoria atualizada com sucesso!',
-        description: `A categoria "${values.name}" foi atualizada com sucesso.`,
+        title: 'Funcionário atualizado com sucesso!',
+        description: `O funcionário "${values.name}" foi atualizado com sucesso.`,
         variant: 'success',
       })
 
-      queryClient.invalidateQueries('categories')
+      queryClient.invalidateQueries('employees')
       onClose()
     } catch (err) {
       handleError(err)
@@ -77,9 +83,9 @@ export function useNewOrEditCategoryDialog({
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     if (data?.id) {
-      handleEditCategory(values)
+      handleEditEmployee(values)
     } else {
-      handleCreateCategory(values)
+      handleCreateEmployee(values)
     }
   }
 

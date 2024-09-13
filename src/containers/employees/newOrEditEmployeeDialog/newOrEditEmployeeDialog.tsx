@@ -10,20 +10,14 @@ import {
   DialogHeader,
   DialogTitle,
   Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  Textarea,
   CustomInput,
 } from '@/components'
-import { useNewOrEditCategoryDialog } from './useNewOrEditCategoryDialog'
-import type { NewCategoryDialogProps } from '../categories.types'
+import { useNewOrEditEmployeeDialog } from './useNewOrEditEmployeeDialog'
+import type { NewEmployeeDialogProps } from '../employees.types'
 
-export function NewOrEditCategoryDialog(props: NewCategoryDialogProps) {
+export function NewOrEditEmployeeDialog(props: NewEmployeeDialogProps) {
   const { form, isLoading, handleClose, onSubmit } =
-    useNewOrEditCategoryDialog(props)
+    useNewOrEditEmployeeDialog(props)
 
   return (
     <Dialog open={props.open}>
@@ -31,38 +25,44 @@ export function NewOrEditCategoryDialog(props: NewCategoryDialogProps) {
         <DialogContent onClose={handleClose}>
           <DialogHeader className="text-left">
             <DialogTitle>
-              {props.data?.id ? 'Editar categoria' : 'Nova categoria'}
+              {props.data?.id ? 'Editar funcionário' : 'Novo funcionário'}
             </DialogTitle>
             <DialogDescription>
               {props.data?.id
-                ? 'Preencha os campos abaixo para editar a categoria selecionada.'
-                : 'Preencha os campos abaixo para adicionar uma nova categoria.'}
+                ? 'Preencha os campos abaixo para editar o funcionário selecionado.'
+                : 'Preencha os campos abaixo para adicionar um novo funcionário.'}
             </DialogDescription>
-            <div className="grid gap-4">
+            <div className="grid gap-2">
               <CustomInput
                 control={form.control}
                 name="name"
                 label="Nome"
-                placeholder="Nome da categoria"
+                placeholder="Fulano de Tal"
                 required
               />
-              <FormField
+              <CustomInput
                 control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Descrição</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="Descrição da categoria"
-                        disabled={isLoading}
-                        rows={3}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                name="cpf"
+                label="CPF"
+                placeholder="000.000.000-00"
+                mask="cpf"
+                required
+              />
+              <CustomInput
+                control={form.control}
+                name="registration"
+                label="Matrícula"
+                placeholder="764"
+                mask="number"
+                maxLength={6}
+                required
+              />
+              <CustomInput
+                control={form.control}
+                name="sector"
+                label="Setor"
+                placeholder="Manutenção, Recursos Humanos, etc."
+                required
               />
             </div>
           </DialogHeader>
@@ -75,8 +75,8 @@ export function NewOrEditCategoryDialog(props: NewCategoryDialogProps) {
                 <ReloadIcon className="w-4 h-4 mr-2 animate-spin" />
               )}
               {props.data?.id
-                ? 'Atualizar categoria'
-                : 'Adicionar nova categoria'}
+                ? 'Atualizar funcionário'
+                : 'Adicionar nova funcionário'}
             </Button>
           </DialogFooter>
         </DialogContent>
