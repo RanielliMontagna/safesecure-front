@@ -2,7 +2,7 @@ import { create } from 'zustand'
 
 import type { AppState, AppStore } from './types'
 import { AxiosError } from 'axios'
-import { toast } from '@/hooks/use-toast'
+import { toast } from '@/hooks'
 
 const initialState: AppState = {
   loading: false,

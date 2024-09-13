@@ -32,7 +32,6 @@ export function useLoginForm() {
   return {
     form,
     isLoading,
-    errors: form.formState.errors,
     onSubmit: form.handleSubmit(onSubmit),
   }
 }
