@@ -1,5 +1,5 @@
-<div>
-    <img src='public/safe-secure-logo.svg' alt='Safe Secure Logo' style={{width: 100, height: 100, display: 'block', margin: '0 auto'}} />
+<div align='center'>
+    <img src='public/safe-secure-logo.svg' alt='Safe Secure Logo' width='100'  />
     <h1 align='center' style={{margin: 0}}>Safe Secure Front</h1>
     <p align='center' style={{margin: 0}}>Aplicação web para controle de alocação de equipamentos</p>
 </div>
@@ -29,13 +29,12 @@ O Safe Secure é uma aplicação web para controle de alocação de equipamentos
 - [React Router](https://reactrouter.com/) - Uma biblioteca para roteamento de aplicações React
 - [Axios](https://axios-http.com/) - Um cliente HTTP baseado em Promises para o navegador e node.js
 
-
 ## 📦 Instalação
 
 ```bash
 # Clone o repositório
 $ git clone
-
+ ap
 # Acesse a pasta do projeto
 $ cd safesecure-front
 
@@ -54,6 +53,3 @@ $ pnpm dev # ou npm run dev ou yarn dev
 ## 📝 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-
-
