@@ -31,11 +31,18 @@ export const useAppStore = create<AppStore>(set => ({
           description: firstIssue?._errors?.[0],
           variant: 'destructive',
         })
+      } else if (err.message === 'Network Error') {
+        toast({
+          title: 'Ocorreu um erro',
+          description: 'Verifique sua conexão com a internet',
+          variant: 'destructive',
+        })
       } else {
-        const message = err.response?.data?.message
+        const message = axiosError?.response?.data?.message
 
         toast({
-          title: message || 'Ocorreu um erro',
+          title: 'Ocorreu um erro inesperado',
+          description: message || 'Tente novamente mais tarde',
           variant: 'destructive',
         })
       }
@@ -47,7 +54,8 @@ export const useAppStore = create<AppStore>(set => ({
       })
     } else {
       toast({
-        title: 'Ocorreu um erro',
+        title: 'Ocorreu um erro inesperado',
+        description: 'Tente novamente mais tarde',
         variant: 'destructive',
       })
     }
