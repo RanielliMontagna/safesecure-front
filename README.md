@@ -1,50 +1,59 @@
-# React + TypeScript + Vite
+<div>
+    <img src='public/safe-secure-logo.svg' alt='Safe Secure Logo' style={{width: 100, height: 100, display: 'block', margin: '0 auto'}} />
+    <h1 align='center' style={{margin: 0}}>Safe Secure Front</h1>
+    <p align='center' style={{margin: 0}}>Aplicação web para controle de alocação de equipamentos</p>
+</div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📖 Sobre
 
-Currently, two official plugins are available:
+O Safe Secure é uma aplicação web para controle de alocação de equipamentos. A aplicação permite o cadastro de equipamentos, categorias, funcionários e alocação de equipamentos para funcionários. Além disso, a aplicação conta com um sistema de registro de logs de ações realizadas na aplicação.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📚 Funcionalidades
 
-## Expanding the ESLint configuration
+- [x] Login de usuário com autenticação JWT.
+- [ ] Cadastro, listagem, atualização e remoção de equipamentos.
+- [x] Cadastro, listagem, atualização e remoção de categorias para os equipamentos.
+- [x] Cadastro, listagem, atualização e remoção de funcionários.
+- [ ] Alocação de equipamentos para funcionários.
+- [ ] Sistema de registro de logs de ações realizadas na aplicação.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🚀 Tecnologias
 
-- Configure the top-level `parserOptions` property like this:
+- [Vite](https://vitejs.dev/) - Um construtor de aplicativos da web moderno e rápido que substitui o webpack
+- [React](https://reactjs.org/) - Uma biblioteca JavaScript para criar interfaces de usuário
+- [TypeScript](https://www.typescriptlang.org/) - Um superconjunto de JavaScript que adiciona tipagem estática
+- [Tailwind CSS](https://tailwindcss.com/) - Um framework CSS de utilidade de baixo nível para construir designs personalizados
+- [Shadcn](https://ui.shadcn.com/) - Componentes de interface projetados para Tailwind CSS e React
+- [React Query](https://tanstack.com/query/v3) - Uma biblioteca para gerenciamento de estado de dados em aplicações React
+- [React Hook Form](https://react-hook-form.com/) - Uma biblioteca para gerenciamento de formulários em aplicações React
+- [React Router](https://reactrouter.com/) - Uma biblioteca para roteamento de aplicações React
+- [Axios](https://axios-http.com/) - Um cliente HTTP baseado em Promises para o navegador e node.js
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+
+## 📦 Instalação
+
+```bash
+# Clone o repositório
+$ git clone
+
+# Acesse a pasta do projeto
+$ cd safesecure-front
+
+# Instale as dependências
+$ pnpm i # ou npm install ou yarn
+
+# Crie um arquivo .env.local e adicione as variáveis de ambiente
+$ cp .env.example .env.local
+
+# Execute a aplicação
+$ pnpm dev # ou npm run dev ou yarn dev
+
+# A aplicação estará disponível em http://localhost:5173
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 📝 Licença
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+
+
