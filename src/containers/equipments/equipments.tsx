@@ -1,11 +1,46 @@
+import { useState } from 'react'
+import { PlusIcon } from '@radix-ui/react-icons'
+
 import { Header } from '@/components'
+import { EquipmentsTable } from './equipmentsTable/equipmentsTable'
+import { NewOrEditEquipmentDialog } from './newOrEditEquipmentDialog/newOrEditEquipmentDialog'
+import { EquipmentDialogState } from './equipments.types'
+import { DeleteEquipmentDialog } from './deleteEquipmentDialog/deleteEquipmentDialog'
 
 export function Equipments() {
+  const [equipmentDialog, setEquipmentDialog] = useState<EquipmentDialogState>({
+    open: false,
+  })
+  const [deleteDialog, setDeleteDialog] = useState<EquipmentDialogState>({
+    open: false,
+  })
+
   return (
-    <div>
+    <div className="flex flex-col gap-4 h-full">
       <Header
         title="Equipamentos"
         description="Aqui você pode gerenciar os equipamentos um a um, para manter o controle de tudo."
+        button={{
+          text: 'Novo equipamento',
+          icon: PlusIcon,
+          onClick: () => setEquipmentDialog({ open: true, data: null }),
+        }}
+      />
+      <div className="p-4 rounded-md shadow-md flex-1 bg-white">
+        <EquipmentsTable
+          setEquipmentDialog={setEquipmentDialog}
+          setDeleteDialog={setDeleteDialog}
+        />
+      </div>
+      <NewOrEditEquipmentDialog
+        open={equipmentDialog.open}
+        data={equipmentDialog.data}
+        onClose={() => setEquipmentDialog(prev => ({ ...prev, open: false }))}
+      />
+      <DeleteEquipmentDialog
+        open={deleteDialog.open}
+        data={deleteDialog.data}
+        onClose={() => setDeleteDialog(prev => ({ ...prev, open: false }))}
       />
     </div>
   )

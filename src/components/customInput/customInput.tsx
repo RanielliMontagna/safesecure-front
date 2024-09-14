@@ -23,6 +23,7 @@ interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   mask?: MaskType
   defaultValue?: string
   required?: boolean
+  helperText?: string
 }
 
 export const CustomInput = ({
@@ -34,6 +35,7 @@ export const CustomInput = ({
   type = 'text',
   mask,
   required = false,
+  helperText,
   ...rest
 }: CustomInputProps) => {
   const handleFormat = (value: string) => {
@@ -74,7 +76,7 @@ export const CustomInput = ({
               {...rest}
             />
           </FormControl>
-          <FormMessage />
+          <FormMessage>{helperText}</FormMessage>
         </FormItem>
       )}
     />

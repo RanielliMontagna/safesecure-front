@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { PlusIcon } from '@radix-ui/react-icons'
 
 import { Header } from '@/components'
@@ -8,12 +9,19 @@ import { CategoryDialogState } from './categories.types'
 import { DeleteCategoryDialog } from './deleteCategoryDialog/deleteCategoryDialog'
 
 export function Categories() {
+  const { search } = useLocation()
+
   const [categoryDialog, setCategoryDialog] = useState<CategoryDialogState>({
     open: false,
   })
   const [deleteDialog, setDeleteDialog] = useState<CategoryDialogState>({
     open: false,
   })
+
+  useEffect(() => {
+    const params = new URLSearchParams(search)
+    if (params.get('new')) setCategoryDialog({ open: true, data: null })
+  }, [])
 
   return (
     <div className="flex flex-col gap-4 h-full">

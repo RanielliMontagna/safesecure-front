@@ -1,18 +1,18 @@
-import { fetchEmployees } from '@/api/employees/employees'
+import { fetchEquipments } from '@/api/equipments/equipments'
 import { useQuery } from '@/hooks'
 
-export function useEmployeesTable() {
+export function useEquipmentsTable() {
   const { data, isLoading } = useQuery({
-    queryKey: ['employees'],
+    queryKey: ['equipments'],
     queryFn: async () => {
-      const res = await fetchEmployees()
+      const res = await fetchEquipments()
       return res.data
     },
     staleTime: 1000 * 60 * 5, // 5 minutes cache
   })
 
   return {
-    employees: data?.employees,
+    equipments: data?.equipments,
     isLoading,
   }
 }

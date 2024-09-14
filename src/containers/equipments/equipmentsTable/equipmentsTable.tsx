@@ -17,32 +17,31 @@ import {
 import { useIsMobile } from '@/hooks'
 import { cn } from '@/utils'
 
-import { useEmployeesTable } from './useEmployeesTable'
-import type { EmployeesTableProps } from '../employees.types'
+import { useEquipmentsTable } from './useEquipmentsTable'
+import type { EquipmentsTableProps } from '../equipments.types'
 
 import EmptySearchSVG from '@/assets/svgs/empty-search.svg'
-import { addCpfMask } from '@/components/customInput/masks/masks'
 
-export function EmployeesTable({
-  setEmployeeDialog,
+export function EquipmentsTable({
+  setEquipmentDialog,
   setDeleteDialog,
-}: EmployeesTableProps) {
+}: EquipmentsTableProps) {
   const { isMobile } = useIsMobile()
-  const { employees, isLoading } = useEmployeesTable()
+  const { equipments, isLoading } = useEquipmentsTable()
 
-  if (!employees?.length) {
+  if (!equipments?.length) {
     return (
       <div className="w-full h-full flex flex-col items-center justify-center text-center p-4">
         <img
           src={EmptySearchSVG}
-          alt="Nenhum funcionário encontrado"
+          alt="Nenhum equipamento encontrado"
           className={cn('w-1/4 h-auto mb-4', isMobile && 'w-1/2')}
         />
         <h2 className={cn('text-2xl font-semibold', isMobile && 'text-xl')}>
-          Nenhum funcionário encontrado
+          Nenhum equipamento encontrado
         </h2>
         <p className={cn('text-gray-500', isMobile && 'text-sm')}>
-          Crie um novo funcionário clicando no botão{' '}
+          Crie um novo equipamento clicando no botão{' '}
           {isMobile ? 'abaixo' : 'no canto superior direito'}.
         </p>
       </div>
@@ -53,22 +52,20 @@ export function EmployeesTable({
     <Table>
       <TableHeader>
         <TableRow>
+          <TableHead>Código</TableHead>
           <TableHead>Nome</TableHead>
-          <TableHead>CPF</TableHead>
-          <TableHead>Matrícula</TableHead>
-          <TableHead>Setor</TableHead>
+          <TableHead>Categoria</TableHead>
+          <TableHead>Quantidade</TableHead>
           <TableHead className="text-right">Ações</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {employees?.map(employee => (
-          <TableRow key={employee.id}>
-            <TableCell className="truncate">{employee.name}</TableCell>
-            <TableCell className="truncate">
-              {addCpfMask(employee.cpf)}
-            </TableCell>
-            <TableCell>{employee.registration}</TableCell>
-            <TableCell>{employee.sector}</TableCell>
+        {equipments?.map(equipment => (
+          <TableRow key={equipment.id}>
+            <TableCell>{equipment.code}</TableCell>
+            <TableCell className="truncate">{equipment.name}</TableCell>
+            <TableCell>{equipment.category.name}</TableCell>
+            <TableCell>{equipment.quantity}</TableCell>
             <TableCell className="text-right">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -79,14 +76,14 @@ export function EmployeesTable({
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem
                     onClick={() =>
-                      setEmployeeDialog({
+                      setEquipmentDialog({
                         open: true,
                         data: {
-                          id: employee.id,
-                          name: employee.name,
-                          cpf: employee.cpf,
-                          registration: employee.registration.toString(),
-                          sector: employee.sector,
+                          id: equipment.id,
+                          code: equipment.code.toString(),
+                          name: equipment.name,
+                          categoryId: equipment.category.id,
+                          quantity: equipment.quantity.toString(),
                         },
                       })
                     }>
@@ -98,11 +95,11 @@ export function EmployeesTable({
                       setDeleteDialog({
                         open: true,
                         data: {
-                          id: employee.id,
-                          name: employee.name,
-                          cpf: employee.cpf,
-                          registration: employee.registration.toString(),
-                          sector: employee.sector,
+                          id: equipment.id,
+                          code: equipment.code.toString(),
+                          name: equipment.name,
+                          categoryId: equipment.category.id,
+                          quantity: equipment.quantity.toString(),
                         },
                       })
                     }}>

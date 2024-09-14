@@ -14,6 +14,7 @@ export * from './ui/skeleton'
 export * from './ui/table'
 export * from './ui/textarea'
 export * from './ui/dropdown-menu'
+export * from './ui/select'
 
 // Layouts
 export { Sidebar } from './sidebar/sidebar'
@@ -21,4 +22,5 @@ export { Appbar } from './appbar/appbar'
 export { Header } from './header/header'
 export { Loading } from './loading/loading'
 export { CustomInput } from './customInput/customInput'
+export { CustomSelect } from './customSelect/customSelect'
 export * as masks from './customInput/masks/masks'
