@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { PlusIcon } from '@radix-ui/react-icons'
 
 import { Header } from '@/components'
@@ -8,12 +9,19 @@ import { EmployeeDialogState } from './employees.types'
 import { DeleteEmployeeDialog } from './deleteEmployeeDialog/deleteEmployeeDialog'
 
 export function Employees() {
+  const { search } = useLocation()
+
   const [employeeDialog, setEmployeeDialog] = useState<EmployeeDialogState>({
     open: false,
   })
   const [deleteDialog, setDeleteDialog] = useState<EmployeeDialogState>({
     open: false,
   })
+
+  useEffect(() => {
+    const params = new URLSearchParams(search)
+    if (params.get('novo')) setEmployeeDialog({ open: true, data: null })
+  }, [])
 
   return (
     <div className="flex flex-col gap-4 h-full">

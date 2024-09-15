@@ -60,7 +60,7 @@ export function CategoriesTable({
       <TableBody>
         {categories?.map(category => (
           <TableRow key={category.id}>
-            <TableCell>{category.name}</TableCell>
+            <TableCell className="truncate">{category.name}</TableCell>
             {category.description ? (
               <TableCell>{category.description}</TableCell>
             ) : (

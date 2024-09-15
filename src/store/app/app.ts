@@ -41,7 +41,7 @@ export const useAppStore = create<AppStore>(set => ({
         const message = axiosError?.response?.data?.message
 
         toast({
-          title: 'Ocorreu um erro inesperado',
+          title: 'Ocorreu um erro',
           description: message || 'Tente novamente mais tarde',
           variant: 'destructive',
         })

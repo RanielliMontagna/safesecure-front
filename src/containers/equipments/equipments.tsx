@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { PlusIcon } from '@radix-ui/react-icons'
 
 import { Header } from '@/components'
@@ -8,12 +9,19 @@ import { EquipmentDialogState } from './equipments.types'
 import { DeleteEquipmentDialog } from './deleteEquipmentDialog/deleteEquipmentDialog'
 
 export function Equipments() {
+  const { search } = useLocation()
+
   const [equipmentDialog, setEquipmentDialog] = useState<EquipmentDialogState>({
     open: false,
   })
   const [deleteDialog, setDeleteDialog] = useState<EquipmentDialogState>({
     open: false,
   })
+
+  useEffect(() => {
+    const params = new URLSearchParams(search)
+    if (params.get('novo')) setEquipmentDialog({ open: true, data: null })
+  }, [])
 
   return (
     <div className="flex flex-col gap-4 h-full">

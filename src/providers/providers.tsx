@@ -4,6 +4,11 @@ import { ErrorBoundary } from 'react-error-boundary'
 
 import { queryClient } from '@/lib/react-query'
 
+import dayjs from 'dayjs'
+import 'dayjs/locale/pt-br'
+
+dayjs.locale('pt-br')
+
 export default function Providers({ children }: PropsWithChildren) {
   return (
     <ErrorBoundary

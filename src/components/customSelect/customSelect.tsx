@@ -14,15 +14,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select'
+import { SelectProps } from '@radix-ui/react-select'
 
 type MaskType = 'number' | 'cpf'
 
 interface OptionsSelect {
   value: string
-  label: string
+  label: React.ReactNode
 }
 
-interface CustomSelectProps {
+interface CustomSelectProps extends SelectProps {
   control: Control<any>
   name: string
   label?: string
@@ -41,6 +42,7 @@ export const CustomSelect = ({
   placeholder,
   required = false,
   options,
+  ...rest
 }: CustomSelectProps) => {
   return (
     <FormField
@@ -57,7 +59,8 @@ export const CustomSelect = ({
               defaultValue={defaultValue}
               value={value}
               disabled={fieldProps.disabled}
-              name={fieldProps.name}>
+              name={fieldProps.name}
+              {...rest}>
               <FormControl>
                 <SelectTrigger>
                   <SelectValue placeholder={placeholder} />

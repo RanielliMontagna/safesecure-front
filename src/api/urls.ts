@@ -3,4 +3,5 @@ export const urls = {
   categories: '/categories',
   employees: '/employees',
   equipments: '/equipments',
+  allocations: '/allocations',
 }

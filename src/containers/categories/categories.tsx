@@ -20,7 +20,7 @@ export function Categories() {
 
   useEffect(() => {
     const params = new URLSearchParams(search)
-    if (params.get('new')) setCategoryDialog({ open: true, data: null })
+    if (params.get('novo')) setCategoryDialog({ open: true, data: null })
   }, [])
 
   return (

@@ -20,14 +20,14 @@ export function useDeleteEmployeeDialog({
       setLoading(true)
 
       if (!data?.id) {
-        throw new Error('Ocorreu um erro ao tentar deletar a categoria')
+        throw new Error('Ocorreu um erro ao tentar deletar o funcionário')
       }
 
       await deleteEmployee(data.id)
 
       toast({
-        title: 'Categoria removida com sucesso!',
-        description: `A categoria "${data.name}" foi removida com sucesso.`,
+        title: 'Funcionário removido com sucesso!',
+        description: `O funcionário "${data.name}" foi removido com sucesso.`,
         variant: 'success',
       })
 

@@ -43,6 +43,7 @@ export function useNewOrEditCategoryDialog({
       })
 
       queryClient.invalidateQueries('categories')
+      form.reset(defaultValues)
       onClose()
     } catch (err) {
       handleError(err)
@@ -67,6 +68,7 @@ export function useNewOrEditCategoryDialog({
       })
 
       queryClient.invalidateQueries('categories')
+      form.reset(defaultValues)
       onClose()
     } catch (err) {
       handleError(err)

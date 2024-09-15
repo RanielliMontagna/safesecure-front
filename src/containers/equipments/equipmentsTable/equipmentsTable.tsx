@@ -52,10 +52,11 @@ export function EquipmentsTable({
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Código</TableHead>
+          <TableHead className="max-w-[70px]">Código</TableHead>
           <TableHead>Nome</TableHead>
+          <TableHead>Estoque</TableHead>
+          <TableHead>Quantidade disponível</TableHead>
           <TableHead>Categoria</TableHead>
-          <TableHead>Quantidade</TableHead>
           <TableHead className="text-right">Ações</TableHead>
         </TableRow>
       </TableHeader>
@@ -64,8 +65,9 @@ export function EquipmentsTable({
           <TableRow key={equipment.id}>
             <TableCell>{equipment.code}</TableCell>
             <TableCell className="truncate">{equipment.name}</TableCell>
-            <TableCell>{equipment.category.name}</TableCell>
             <TableCell>{equipment.quantity}</TableCell>
+            <TableCell>{equipment.available_quantity}</TableCell>
+            <TableCell>{equipment.category.name}</TableCell>
             <TableCell className="text-right">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -114,15 +116,11 @@ export function EquipmentsTable({
         {isLoading &&
           Array.from({ length: 2 }).map((_, index) => (
             <TableRow key={index}>
-              <TableCell>
-                <Skeleton className="w-full h-8" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="w-full h-8" />
-              </TableCell>
-              <TableCell className="text-right">
-                <Skeleton className="w-full h-8" />
-              </TableCell>
+              {Array.from({ length: 6 }).map((_, index) => (
+                <TableCell key={index}>
+                  <Skeleton className="w-full h-8" />
+                </TableCell>
+              ))}
             </TableRow>
           ))}
       </TableBody>

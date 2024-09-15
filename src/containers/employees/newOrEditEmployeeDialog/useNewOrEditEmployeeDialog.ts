@@ -47,6 +47,7 @@ export function useNewOrEditEmployeeDialog({
       })
 
       queryClient.invalidateQueries('employees')
+      form.reset(defaultValues)
       onClose()
     } catch (err) {
       handleError(err)
@@ -73,6 +74,7 @@ export function useNewOrEditEmployeeDialog({
       })
 
       queryClient.invalidateQueries('employees')
+      form.reset(defaultValues)
       onClose()
     } catch (err) {
       handleError(err)

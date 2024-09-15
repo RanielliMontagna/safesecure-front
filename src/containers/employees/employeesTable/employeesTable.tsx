@@ -117,15 +117,11 @@ export function EmployeesTable({
         {isLoading &&
           Array.from({ length: 2 }).map((_, index) => (
             <TableRow key={index}>
-              <TableCell>
-                <Skeleton className="w-full h-8" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="w-full h-8" />
-              </TableCell>
-              <TableCell className="text-right">
-                <Skeleton className="w-full h-8" />
-              </TableCell>
+              {Array.from({ length: 5 }).map((_, index) => (
+                <TableCell key={index}>
+                  <Skeleton className="w-full h-8" />
+                </TableCell>
+              ))}
             </TableRow>
           ))}
       </TableBody>

@@ -61,6 +61,7 @@ export function NewOrEditEquipmentDialog(props: NewEquipmentDialogProps) {
                 placeholder="Selecione uma categoria"
                 options={categoriesSelectOptions}
                 required
+                disabled={categoriesSelectOptions?.length === 0}
               />
               {categoriesSelectOptions?.length === 0 && (
                 <Alert variant="destructive" className="flex items-center p-2">
@@ -69,7 +70,7 @@ export function NewOrEditEquipmentDialog(props: NewEquipmentDialogProps) {
                     Nenhuma categoria encontrada, para adicionar ou editar um
                     equipamento, é necessário criar uma categoria.{' '}
                     <b className="cursor-pointer">
-                      <a onClick={() => navigate('/categorias?new=true')}>
+                      <a onClick={() => navigate('/categorias?novo=true')}>
                         Clique aqui para criar uma categoria.
                       </a>
                     </b>

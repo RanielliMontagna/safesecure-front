@@ -14,4 +14,5 @@ export interface ResponseEquipment
   extends Omit<CreateEquipmentPayload, 'categoryId'> {
   id: string
   category: Category
+  available_quantity: number
 }

@@ -17,6 +17,7 @@ export function useNewOrEditEquipmentDialog({
   onClose,
 }: NewEquipmentDialogProps) {
   const { handleError } = useAppStore()
+  const [isLoading, setLoading] = useState(false)
 
   const categoriesQuery = useQuery({
     queryKey: ['categories'],
@@ -26,8 +27,6 @@ export function useNewOrEditEquipmentDialog({
     },
     staleTime: 1000 * 60 * 5, // 5 minutes cache
   })
-
-  const [isLoading, setLoading] = useState(false)
 
   const defaultValues = { name: '', cpf: '', registration: '', sector: '' }
   const form = useForm<z.infer<typeof formSchema>>({
@@ -58,6 +57,7 @@ export function useNewOrEditEquipmentDialog({
       })
 
       queryClient.invalidateQueries('equipments')
+      form.reset(defaultValues)
       onClose()
     } catch (err) {
       handleError(err)
@@ -84,6 +84,7 @@ export function useNewOrEditEquipmentDialog({
       })
 
       queryClient.invalidateQueries('equipments')
+      form.reset(defaultValues)
       onClose()
     } catch (err) {
       handleError(err)

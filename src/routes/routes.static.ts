@@ -10,7 +10,7 @@ import {
 import {
   Login,
   Dashboard,
-  Allocation,
+  Allocations,
   Equipments,
   Employees,
   Categories,
@@ -29,7 +29,7 @@ export const privateRoutes = [
   {
     name: 'Alocação de Equipamentos',
     href: '/alocacao',
-    Component: Allocation,
+    Component: Allocations,
     Icon: LockOpen1Icon,
   },
   {
