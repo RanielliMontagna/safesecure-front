@@ -20,7 +20,7 @@ export function Allocations() {
           onClick: () => setAllocationDialog({ open: true }),
         }}
       />
-      <div className="p-4 rounded-md shadow-md flex-1 bg-white">
+      <div className="p-4 rounded-md shadow-md flex-1 bg-white overflow-auto">
         <AllocationsTable />
       </div>
       <NewAllocationDialog

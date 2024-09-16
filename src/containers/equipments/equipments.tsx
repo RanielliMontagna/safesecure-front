@@ -34,7 +34,7 @@ export function Equipments() {
           onClick: () => setEquipmentDialog({ open: true, data: null }),
         }}
       />
-      <div className="p-4 rounded-md shadow-md flex-1 bg-white">
+      <div className="p-4 rounded-md shadow-md flex-1 bg-white overflow-auto">
         <EquipmentsTable
           setEquipmentDialog={setEquipmentDialog}
           setDeleteDialog={setDeleteDialog}

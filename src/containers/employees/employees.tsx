@@ -34,7 +34,7 @@ export function Employees() {
           onClick: () => setEmployeeDialog({ open: true, data: null }),
         }}
       />
-      <div className="p-4 rounded-md shadow-md flex-1 bg-white">
+      <div className="p-4 rounded-md shadow-md flex-1 bg-white overflow-auto">
         <EmployeesTable
           setEmployeeDialog={setEmployeeDialog}
           setDeleteDialog={setDeleteDialog}

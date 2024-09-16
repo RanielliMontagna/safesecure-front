@@ -4,4 +4,5 @@ export const urls = {
   employees: '/employees',
   equipments: '/equipments',
   allocations: '/allocations',
+  logs: '/logs',
 }

@@ -23,10 +23,10 @@ export function DeleteEquipmentDialog(props: DeleteEquipmentDialogProps) {
       <AlertDialogContent>
         <AlertDialogHeader className="text-left">
           <AlertDialogTitle>
-            Deletar funcionário <b>{props.data?.name}</b>?
+            Deletar equipamento <b>{props.data?.name}</b>?
           </AlertDialogTitle>
           <AlertDialogDescription className="max-w-md">
-            Tem certeza que deseja deletar o funcionário{' '}
+            Tem certeza que deseja deletar o equipamento{' '}
             <b>{props.data?.name}</b>? Essa ação não poderá ser desfeita.
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -39,7 +39,7 @@ export function DeleteEquipmentDialog(props: DeleteEquipmentDialogProps) {
               {isLoading && (
                 <ReloadIcon className="w-4 h-4 mr-2 animate-spin" />
               )}
-              Deletar funcionário
+              Deletar equipamento
             </Button>
           </AlertDialogAction>
           <AlertDialogCancel
