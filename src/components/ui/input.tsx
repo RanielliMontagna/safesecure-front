@@ -3,20 +3,41 @@ import * as React from 'react'
 import { cn } from '@/utils'
 
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  startAdornment?: React.ReactNode
+  endAdornment?: React.ReactNode
+}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
+  ({ className, startAdornment, type, ...props }, ref) => {
     return (
-      <input
-        type={type}
+      <div
         className={cn(
-          'flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',
+          'flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm',
+          'focus-within:border-primary focus-within:ring-0 focus-within:ring-primary',
+          'relative flex align-center gap-2',
           className,
+        )}>
+        {startAdornment && (
+          <div className="flex items-center justify-center rounded-md">
+            {startAdornment}
+          </div>
         )}
-        ref={ref}
-        {...props}
-      />
+        <input
+          type={type}
+          className={cn(
+            'w-full h-full bg-transparent placeholder-text-muted-foreground focus:outline-none',
+            className,
+          )}
+          ref={ref}
+          {...props}
+        />
+        {props.endAdornment && (
+          <div className="flex items-center justify-center rounded-md">
+            {props.endAdornment}
+          </div>
+        )}
+      </div>
     )
   },
 )

@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Control } from 'react-hook-form'
 
 import {
@@ -10,7 +11,7 @@ import {
 } from '../ui/form'
 import { Input } from '../ui/input'
 
-import * as masks from './masks/masks'
+import { masks } from '@/utils'
 
 type MaskType = 'number' | 'cpf'
 
@@ -24,18 +25,24 @@ interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   defaultValue?: string
   required?: boolean
   helperText?: string
+  startAdornment?: React.ReactNode
+  endAdornment?: React.ReactNode
+  onInputChange?: (value: string) => void
 }
 
 export const CustomInput = ({
-  defaultValue,
+  mask,
   name,
   label,
   control,
   placeholder,
+  defaultValue,
   type = 'text',
-  mask,
   required = false,
   helperText,
+  startAdornment,
+  endAdornment,
+  onInputChange,
   ...rest
 }: CustomInputProps) => {
   const handleFormat = (value: string) => {
@@ -65,6 +72,8 @@ export const CustomInput = ({
           </FormLabel>
           <FormControl>
             <Input
+              startAdornment={startAdornment}
+              endAdornment={endAdornment}
               defaultValue={defaultValue}
               id={name}
               data-mask={mask}
@@ -72,7 +81,10 @@ export const CustomInput = ({
               type={type}
               autoComplete="off"
               value={handleFormat(value || '')}
-              onChange={e => onChange(handleParse(e.target.value))}
+              onChange={e => {
+                onInputChange?.(e.target.value)
+                return onChange(handleParse(e.target.value))
+              }}
               {...rest}
             />
           </FormControl>

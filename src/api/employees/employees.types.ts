@@ -1,3 +1,5 @@
+import type { Options } from '@/constants/types'
+
 export interface CreateEmployeePayload {
   name: string
   cpf: string
@@ -8,3 +10,5 @@ export interface CreateEmployeePayload {
 export interface ResponseEmployee extends CreateEmployeePayload {
   id: string
 }
+
+export interface FetchEmployeesParams extends Options {}

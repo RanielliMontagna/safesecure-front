@@ -2,16 +2,19 @@ import type { BackendResponse } from '@/constants/types'
 
 import type {
   CreateCategoryPayload,
+  FetchCategoriesParams,
   ResponseCategory,
 } from './categories.types'
 
 import { axiosInstance } from '@/lib/axios'
 import { urls } from '../urls'
 
-export async function fetchCategories(): BackendResponse<{
-  categories: ResponseCategory[]
+export async function fetchCategories(
+  params?: FetchCategoriesParams,
+): BackendResponse<{
+  categories: ResponseCategory[] | null
 }> {
-  return await axiosInstance.get(urls.categories)
+  return await axiosInstance.get(urls.categories, { params })
 }
 
 export async function getCategory(id: string) {

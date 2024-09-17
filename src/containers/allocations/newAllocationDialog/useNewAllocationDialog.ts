@@ -86,11 +86,11 @@ export function useNewAllocationDialog({ onClose }: NewAllocationDialogProps) {
   return {
     form,
     isLoading,
-    employeeSelectOptions: employeesQuery.data?.employees.map(e => ({
+    employeeSelectOptions: employeesQuery.data?.employees?.map(e => ({
       value: e.id,
       label: e.name,
     })),
-    equipmentsSelectOptions: equipmentsQuery.data?.equipments.map(e => ({
+    equipmentsSelectOptions: equipmentsQuery.data?.equipments?.map(e => ({
       value: e.id,
       label: e.name,
       availableQuantity: e.available_quantity,

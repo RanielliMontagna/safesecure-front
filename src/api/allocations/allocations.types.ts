@@ -1,3 +1,5 @@
+import type { Options } from '@/constants/types'
+
 interface Equipment {
   id: string
   name: string
@@ -31,3 +33,5 @@ export interface ResponseAllocation {
   allocatedQuantity: number
   status: AllocationStatus
 }
+
+export interface FetchAllocationsParams extends Options {}

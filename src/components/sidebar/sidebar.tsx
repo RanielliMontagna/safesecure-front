@@ -63,7 +63,7 @@ function Sidebar({ className, expansive }: SidebarProps) {
                 }}
                 className={cn(
                   'w-full justify-start hover:bg-gray-200',
-                  location.pathname === route.href && 'bg-gray-400',
+                  location.pathname === route.href && 'bg-gray-100',
                 )}>
                 {route.Icon && <route.Icon className="w-5 h-5 mr-2" />}
                 {route.name}

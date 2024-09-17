@@ -1,3 +1,5 @@
+import type { Options } from '@/constants/types'
+
 interface Category {
   id: string
   name: string
@@ -16,3 +18,5 @@ export interface ResponseEquipment
   category: Category
   available_quantity: number
 }
+
+export interface FetchEquipmentsParams extends Options {}

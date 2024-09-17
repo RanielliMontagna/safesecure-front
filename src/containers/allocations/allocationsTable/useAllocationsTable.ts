@@ -1,18 +1,37 @@
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+
 import {
   fetchAllocations,
   returnAllocation,
 } from '@/api/allocations/allocations'
-import { toast, useQuery } from '@/hooks'
 import { queryClient } from '@/lib/react-query'
 import { useAppStore } from '@/store/app/app'
+
+import { useDebounce, useQuery, toast } from '@/hooks'
+import { zodResolver } from '@hookform/resolvers/zod'
+import type { FetchAllocationsParams } from '@/api/allocations/allocations.types'
+
+const formSchema = z.object({ search: z.string().optional() })
 
 export function useAllocationsTable() {
   const { setLoading, handleError } = useAppStore()
 
-  const { data, isLoading } = useQuery({
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: { search: '' },
+  })
+
+  const searchValue = form.watch('search')
+
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ['allocations'],
     queryFn: async () => {
-      const res = await fetchAllocations()
+      const params = {} as FetchAllocationsParams
+      if (searchValue) params.search = searchValue
+
+      const res = await fetchAllocations(params)
       return res.data
     },
     staleTime: 1000 * 60 * 5, // 5 minutes cache
@@ -39,7 +58,14 @@ export function useAllocationsTable() {
     }
   }
 
+  const debouncedSearch = useDebounce(searchValue || '', 500)
+
+  useEffect(() => {
+    refetch()
+  }, [debouncedSearch])
+
   return {
+    form,
     isLoading,
     allocations: data?.allocations,
     handleReturnAllocation,

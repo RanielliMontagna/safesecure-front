@@ -2,16 +2,19 @@ import type { BackendResponse } from '@/constants/types'
 
 import type {
   CreateEquipmentPayload,
+  FetchEquipmentsParams,
   ResponseEquipment,
 } from './equipments.types'
 
 import { axiosInstance } from '@/lib/axios'
 import { urls } from '../urls'
 
-export async function fetchEquipments(): BackendResponse<{
-  equipments: ResponseEquipment[]
+export async function fetchEquipments(
+  params?: FetchEquipmentsParams,
+): BackendResponse<{
+  equipments: ResponseEquipment[] | null
 }> {
-  return await axiosInstance.get(urls.equipments)
+  return await axiosInstance.get(urls.equipments, { params })
 }
 
 export async function getEquipment(id: string) {
