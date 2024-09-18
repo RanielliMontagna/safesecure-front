@@ -1,58 +1,37 @@
 import dayjs from 'dayjs'
-
 import {
+  Badge,
+  Skeleton,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-  Skeleton,
-  Badge,
 } from '@/components'
-import { cn } from '@/utils'
-import { useIsMobile } from '@/hooks'
 
-import { useLogsTable } from './useLogsTable'
 import {
   LogActions,
   LogActionsTranslated,
   LogEntities,
   LogEntitiesTranslated,
+  type ResponseLog,
 } from '@/api/logs/logs.types'
+import { cn } from '@/utils'
 
-import EmptySearchSVG from '@/assets/svgs/empty-search.svg'
+interface LogsDataTableProps {
+  isLoading: boolean
+  logs: ResponseLog[] | null
+}
 
-export function LogsTable() {
-  const { isMobile } = useIsMobile()
-  const { logs, isLoading } = useLogsTable()
-
-  if (!logs?.length) {
-    return (
-      <div className="w-full h-full flex flex-col items-center justify-center text-center p-4">
-        <img
-          src={EmptySearchSVG}
-          alt="Nenhum equipamento encontrado"
-          className={cn('w-1/4 h-auto mb-4', isMobile && 'w-1/2')}
-        />
-        <h2 className={cn('text-2xl font-semibold', isMobile && 'text-xl')}>
-          Nenhum registro encontrado
-        </h2>
-        <p className={cn('text-gray-500', isMobile && 'text-sm')}>
-          Não há registros de atividades no sistema. Comece utilizar o sistema
-          para visualizar os registros.
-        </p>
-      </div>
-    )
-  }
-
+export function LogsDataTable({ logs, isLoading }: LogsDataTableProps) {
   return (
     <Table>
       <TableHeader>
         <TableRow>
           <TableHead>Ação</TableHead>
-          <TableHead>Entidade afetada</TableHead>
           <TableHead>Detalhes</TableHead>
+          <TableHead>Entidade afetada</TableHead>
           <TableHead>Ação realizada em</TableHead>
         </TableRow>
       </TableHeader>

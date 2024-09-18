@@ -1,3 +1,5 @@
+import type { Options } from '@/constants/types'
+
 export interface ResponseLog {
   id: string
   action: string
@@ -31,3 +33,5 @@ export enum LogEntitiesTranslated {
   employees = 'Funcionários',
   allocations = 'Alocações',
 }
+
+export interface FetchLogsParams extends Options {}
