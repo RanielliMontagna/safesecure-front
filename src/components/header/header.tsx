@@ -13,7 +13,7 @@ export function Header({ title, description, button }: HeaderProps) {
           {description && <p className="text-sm">{description}</p>}
         </div>
         <div className="absolute inset-y-2.5 right-2.5 flex items-end justify-end">
-          {button && (
+          {button && !button.disablemobile && (
             <Button
               {...button}
               className="p-2 rounded-full w-14 h-14 flex item-center justify-center">

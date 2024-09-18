@@ -112,10 +112,12 @@ export function useNewOrEditEquipmentDialog({
   return {
     form,
     isLoading,
-    categoriesSelectOptions: categoriesQuery.data?.categories.map(category => ({
-      value: category.id,
-      label: category.name,
-    })),
+    categoriesSelectOptions: categoriesQuery.data?.categories?.map(
+      category => ({
+        value: category.id,
+        label: category.name,
+      }),
+    ),
     handleClose,
     onSubmit: form.handleSubmit(onSubmit),
   }

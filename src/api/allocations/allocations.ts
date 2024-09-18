@@ -4,6 +4,8 @@ import type {
   CreateAllocationPayload,
   FetchAllocationsParams,
   ResponseAllocation,
+  ResponseDashboardInfo,
+  ResponseQuantityAllocationByWeek,
 } from './allocations.types'
 
 import { axiosInstance } from '@/lib/axios'
@@ -15,6 +17,22 @@ export async function fetchAllocations(
   allocations: ResponseAllocation[] | null
 }> {
   return await axiosInstance.get(urls.allocations, { params })
+}
+
+export async function fetchLatestAllocations(): BackendResponse<{
+  allocations: ResponseAllocation[] | null
+}> {
+  return await axiosInstance.get(`${urls.allocations}/latest`)
+}
+
+export async function getAllocationsByWeek(): BackendResponse<{
+  week: ResponseQuantityAllocationByWeek[]
+}> {
+  return await axiosInstance.get(`${urls.allocations}/week`)
+}
+
+export async function getDashboardInfos(): BackendResponse<ResponseDashboardInfo> {
+  return await axiosInstance.get(`${urls.allocations}/dashboard`)
 }
 
 export async function getAllocation(allocationId: string) {

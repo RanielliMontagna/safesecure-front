@@ -61,9 +61,9 @@ export function NewOrEditEquipmentDialog(props: NewEquipmentDialogProps) {
                 placeholder="Selecione uma categoria"
                 options={categoriesSelectOptions}
                 required
-                disabled={categoriesSelectOptions?.length === 0}
+                disabled={!categoriesSelectOptions}
               />
-              {categoriesSelectOptions?.length === 0 && (
+              {!categoriesSelectOptions && (
                 <Alert variant="destructive" className="flex items-center p-2">
                   <ExclamationTriangleIcon className="min-w-4 min-h-4 " />
                   <AlertDescription>

@@ -9,7 +9,7 @@ export interface InputProps
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, startAdornment, type, ...props }, ref) => {
+  ({ className, startAdornment, endAdornment, type, ...props }, ref) => {
     return (
       <div
         className={cn(
@@ -32,9 +32,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           {...props}
         />
-        {props.endAdornment && (
+        {endAdornment && (
           <div className="flex items-center justify-center rounded-md">
-            {props.endAdornment}
+            {endAdornment}
           </div>
         )}
       </div>

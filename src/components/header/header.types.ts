@@ -6,6 +6,7 @@ interface HeaderButtonProps extends Omit<ButtonProps, 'children'> {
   icon?: React.ForwardRefExoticComponent<
     IconProps & React.RefAttributes<SVGSVGElement>
   >
+  disablemobile?: string
 }
 
 export interface HeaderProps {

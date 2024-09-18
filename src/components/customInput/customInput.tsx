@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import { Control } from 'react-hook-form'
 
@@ -30,7 +30,7 @@ interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   onInputChange?: (value: string) => void
 }
 
-export const CustomInput = ({
+export const CustomInput: FC<CustomInputProps> = ({
   mask,
   name,
   label,
@@ -44,7 +44,7 @@ export const CustomInput = ({
   endAdornment,
   onInputChange,
   ...rest
-}: CustomInputProps) => {
+}) => {
   const handleFormat = (value: string) => {
     if (mask) {
       return masks[mask].format(value)

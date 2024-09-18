@@ -51,9 +51,9 @@ export function NewAllocationDialog(props: NewAllocationDialogProps) {
                 placeholder="Selecione um funcionário"
                 options={employeeSelectOptions}
                 required
-                disabled={employeeSelectOptions?.length === 0}
+                disabled={!employeeSelectOptions}
               />
-              {employeeSelectOptions?.length === 0 && (
+              {!employeeSelectOptions && (
                 <Alert variant="destructive" className="flex items-center p-2">
                   <ExclamationTriangleIcon className="min-w-4 min-h-4 " />
                   <AlertDescription>
@@ -88,9 +88,9 @@ export function NewAllocationDialog(props: NewAllocationDialogProps) {
                   }),
                 )}
                 required
-                disabled={equipmentsSelectOptions?.length === 0}
+                disabled={!equipmentsSelectOptions}
               />
-              {equipmentsSelectOptions?.length === 0 && (
+              {!equipmentsSelectOptions && (
                 <Alert variant="destructive" className="flex items-center p-2">
                   <ExclamationTriangleIcon className="min-w-4 min-h-4 " />
                   <AlertDescription>

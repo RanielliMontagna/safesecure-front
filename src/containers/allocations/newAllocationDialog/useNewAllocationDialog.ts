@@ -42,7 +42,7 @@ export function useNewAllocationDialog({ onClose }: NewAllocationDialogProps) {
     defaultValues: {
       employeeId: '',
       equipmentId: '',
-      startDate: dayjs().format('YYYY-MM-DD').toString(),
+      startDate: dayjs().format('YYYY-MM-DD HH:mm'),
       endDate: '',
       allocatedQuantity: '',
     },

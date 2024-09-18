@@ -34,4 +34,16 @@ export interface ResponseAllocation {
   status: AllocationStatus
 }
 
+export interface ResponseQuantityAllocationByWeek {
+  day: string
+  allocatedQuantity: string
+}
+
 export interface FetchAllocationsParams extends Options {}
+
+export interface ResponseDashboardInfo {
+  activeAllocations: number
+  lateAllocations: number
+  equipments: number
+  employees: number
+}
