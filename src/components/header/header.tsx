@@ -12,7 +12,7 @@ export function Header({ title, description, button }: HeaderProps) {
           <h1 className="text-2xl font-bold">{title}</h1>
           {description && <p className="text-sm">{description}</p>}
         </div>
-        <div className="absolute inset-y-2.5 right-2.5 flex items-end justify-end">
+        <div className="absolute bottom-2.5 right-2.5 flex items-end justify-end">
           {button && !button.disablemobile && (
             <Button
               {...button}

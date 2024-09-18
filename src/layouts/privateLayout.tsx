@@ -12,7 +12,7 @@ export function PrivateLayout() {
     return (
       <div className="h-screen flex flex-col bg-gray-100">
         <Appbar />
-        <div className="w-full h-full p-4 overflow-auto">
+        <div className="w-full h-full p-6 overflow-auto">
           <Outlet />
         </div>
         {loading && <Loading />}

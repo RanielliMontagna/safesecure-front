@@ -3,12 +3,16 @@ import { useLocation } from 'react-router-dom'
 import { PlusIcon } from '@radix-ui/react-icons'
 
 import { Header } from '@/components'
-import { CategoriesTable } from './categoriesTable/categoriesTable'
+import { useIsMobile } from '@/hooks'
+import { cn } from '@/utils'
+
+import { CategoriesData } from './categoriesData/categoriesData'
 import { NewOrEditCategoryDialog } from './newOrEditCategoryDialog/newOrEditCategoryDialog'
 import { CategoryDialogState } from './categories.types'
 import { DeleteCategoryDialog } from './deleteCategoryDialog/deleteCategoryDialog'
 
 export function Categories() {
+  const { isMobile } = useIsMobile()
   const { search } = useLocation()
 
   const [categoryDialog, setCategoryDialog] = useState<CategoryDialogState>({
@@ -34,8 +38,12 @@ export function Categories() {
           onClick: () => setCategoryDialog({ open: true, data: null }),
         }}
       />
-      <div className="p-4 rounded-md shadow-md flex-1 bg-white overflow-auto">
-        <CategoriesTable
+      <div
+        className={cn(
+          'rounded-md flex-1 overflow-auto',
+          !isMobile && 'bg-white shadow-md p-4',
+        )}>
+        <CategoriesData
           setCategoryDialog={setCategoryDialog}
           setDeleteDialog={setDeleteDialog}
         />

@@ -28,7 +28,7 @@ export interface DeleteEquipmentDialogProps extends EquipmentDialogState {
   onClose: () => void
 }
 
-export interface EquipmentsTableProps {
+export interface EquipmentsDataProps {
   setEquipmentDialog: React.Dispatch<React.SetStateAction<EquipmentDialogState>>
   setDeleteDialog: React.Dispatch<React.SetStateAction<EquipmentDialogState>>
 }

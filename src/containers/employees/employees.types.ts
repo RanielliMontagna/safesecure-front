@@ -34,7 +34,7 @@ export interface DeleteEmployeeDialogProps extends EmployeeDialogState {
   onClose: () => void
 }
 
-export interface EmployeesTableProps {
+export interface EmployeesDataProps {
   setEmployeeDialog: React.Dispatch<React.SetStateAction<EmployeeDialogState>>
   setDeleteDialog: React.Dispatch<React.SetStateAction<EmployeeDialogState>>
 }

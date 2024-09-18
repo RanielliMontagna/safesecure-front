@@ -19,7 +19,7 @@ export interface DeleteCategoryDialogProps extends CategoryDialogState {
   onClose: () => void
 }
 
-export interface CategoriesTableProps {
+export interface CategoriesDataProps {
   setCategoryDialog: React.Dispatch<React.SetStateAction<CategoryDialogState>>
   setDeleteDialog: React.Dispatch<React.SetStateAction<CategoryDialogState>>
 }

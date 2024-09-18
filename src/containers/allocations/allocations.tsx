@@ -2,11 +2,14 @@ import { useState } from 'react'
 import { PlusIcon } from '@radix-ui/react-icons'
 
 import { Header } from '@/components'
+import { cn } from '@/utils'
+import { useIsMobile } from '@/hooks'
 
-import { AllocationsTable } from './allocationsTable/allocationsTable'
+import { AllocationsTable } from './allocationsData/allocationsData'
 import { NewAllocationDialog } from './newAllocationDialog/newAllocationDialog'
 
 export function Allocations() {
+  const { isMobile } = useIsMobile()
   const [allocationDialog, setAllocationDialog] = useState({ open: false })
 
   return (
@@ -20,7 +23,11 @@ export function Allocations() {
           onClick: () => setAllocationDialog({ open: true }),
         }}
       />
-      <div className="p-4 rounded-md shadow-md flex-1 bg-white overflow-auto">
+      <div
+        className={cn(
+          'rounded-md flex-1 overflow-auto',
+          !isMobile && 'bg-white shadow-md p-4',
+        )}>
         <AllocationsTable />
       </div>
       <NewAllocationDialog

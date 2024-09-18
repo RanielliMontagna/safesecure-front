@@ -10,7 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 const formSchema = z.object({ search: z.string().optional() })
 
-export function useEquipmentsTable() {
+export function useEquipmentsData() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: { search: '' },

@@ -1,16 +1,15 @@
-import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import { fetchCategories } from '@/api/categories/categories'
-import { useQuery } from '@/hooks/useQuery/useQuery'
-import { FetchCategoriesParams } from '@/api/categories/categories.types'
-import { useDebounce } from '@/hooks'
+import type { FetchEmployeesParams } from '@/api/employees/employees.types'
+import { fetchEmployees } from '@/api/employees/employees'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useDebounce, useQuery } from '@/hooks'
+import { useEffect } from 'react'
 
 const formSchema = z.object({ search: z.string().optional() })
 
-export function useCategoriesTable() {
+export function useEmployeesData() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: { search: '' },
@@ -18,13 +17,13 @@ export function useCategoriesTable() {
 
   const searchValue = form.watch('search')
 
-  const { data, isLoading, isFetching, refetch } = useQuery({
-    queryKey: ['categories'],
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ['employees'],
     queryFn: async () => {
-      const params = {} as FetchCategoriesParams
+      const params = {} as FetchEmployeesParams
       if (searchValue) params.search = searchValue
 
-      const res = await fetchCategories(params)
+      const res = await fetchEmployees(params)
       return res.data
     },
     staleTime: 1000 * 60 * 5, // 5 minutes cache
@@ -38,7 +37,7 @@ export function useCategoriesTable() {
 
   return {
     form,
-    isLoading: isLoading || isFetching,
-    categories: data?.categories,
+    isLoading,
+    employees: data?.employees,
   }
 }

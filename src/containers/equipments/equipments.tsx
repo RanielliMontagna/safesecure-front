@@ -3,12 +3,16 @@ import { useLocation } from 'react-router-dom'
 import { PlusIcon } from '@radix-ui/react-icons'
 
 import { Header } from '@/components'
-import { EquipmentsTable } from './equipmentsTable/equipmentsTable'
+import { useIsMobile } from '@/hooks'
+import { cn } from '@/utils'
+
+import { EquipmentsData } from './equipmentsData/equipmentsData'
 import { NewOrEditEquipmentDialog } from './newOrEditEquipmentDialog/newOrEditEquipmentDialog'
 import { EquipmentDialogState } from './equipments.types'
 import { DeleteEquipmentDialog } from './deleteEquipmentDialog/deleteEquipmentDialog'
 
 export function Equipments() {
+  const { isMobile } = useIsMobile()
   const { search } = useLocation()
 
   const [equipmentDialog, setEquipmentDialog] = useState<EquipmentDialogState>({
@@ -34,8 +38,12 @@ export function Equipments() {
           onClick: () => setEquipmentDialog({ open: true, data: null }),
         }}
       />
-      <div className="p-4 rounded-md shadow-md flex-1 bg-white overflow-auto">
-        <EquipmentsTable
+      <div
+        className={cn(
+          'rounded-md flex-1 overflow-auto',
+          !isMobile && 'bg-white shadow-md p-4',
+        )}>
+        <EquipmentsData
           setEquipmentDialog={setEquipmentDialog}
           setDeleteDialog={setDeleteDialog}
         />
